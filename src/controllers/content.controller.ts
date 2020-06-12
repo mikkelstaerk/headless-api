@@ -13,7 +13,7 @@ import { GetContentByUrlDto } from 'src/dto/getContentByUrl.dto';
 export class ContentController {
   constructor(private readonly contentService: ContentService) {}
 
-  @Get('url/:platform')
+  @Get(':platform/url')
   @ApiOkResponse({ type: ContentResponse, description: 'Your resource has been fetched successfully' })
   @ApiNotFoundResponse({ type: GenericErrorResponse, description: 'The resource you are looking for does not exist' })
   @ApiBadRequestResponse({ type: GenericErrorResponse, description: 'You did not supply the correct query parameters' })
