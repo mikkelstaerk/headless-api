@@ -4,8 +4,6 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use('/docs.json', (req, res, next) => res.send(document));
-  app.enableCors();
 
   const options = new DocumentBuilder()
     .setTitle('Headless API')
@@ -15,6 +13,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('swagger', app, document);
+
+  // app.use('/docs.json', (req, res, next) => res.send(document));
+  app.enableCors();
 
   await app.listen(process.env.PORT || 3000);
 }
